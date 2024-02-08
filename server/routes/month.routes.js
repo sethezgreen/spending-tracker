@@ -1,4 +1,5 @@
 const MonthController = require('../controllers/month.controller')
+const ExpenseController = require('../controllers/expense.controller')
 
 module.exports = (app) => {
     app.post('/api/create', MonthController.createMonth)
@@ -8,5 +9,5 @@ module.exports = (app) => {
     app.delete('/api/deleteMonth/:id', MonthController.deleteMonth)
 
     // Expense routes
-    // app.put('/api/month/:monthId/expenses/:expenseId', MonthController.updateExpense)
+    app.put('/api/month/:monthId/expenses/:expenseId', ExpenseController.updateExpense)
 }
