@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const MonthSchema = new mongoose.Schema({
+const MonthSchema = new Schema({
     month: {
         type:String
     },
@@ -10,11 +11,16 @@ const MonthSchema = new mongoose.Schema({
     year: {
         type:Number
     },
-    expenses: [{
-        name:String, 
-        value:Number
-    }, {timestamps:true}]
-    // need to find out how to add time stamps to expenses
+    expenses: [
+        {
+            type: new Schema(
+            {
+                name:String, 
+                value:Number
+            }, {timestamps:true}
+            )
+        }
+    ]
 }, {timestamps:true})
 
 module.exports = mongoose.model('Month', MonthSchema)
