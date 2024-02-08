@@ -15,8 +15,8 @@ const MonthSchema = new Schema({
         {
             type: new Schema(
             {
-                name:String, 
-                value:Number
+                expenseName:String, 
+                price:Number
             }, {timestamps:true}
             )
         }
