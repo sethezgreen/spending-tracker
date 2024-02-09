@@ -11,4 +11,5 @@ module.exports = (app) => {
     // Expense routes
     app.put('/api/month/:monthId/expenses/:expenseId', ExpenseController.updateExpense)
     app.put('/api/month/:monthId/expense/delete/:expenseId', ExpenseController.deleteExpense)
+    app.put('/api/month/:monthId/expense/add', ExpenseController.addExpense)
 }
