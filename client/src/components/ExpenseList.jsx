@@ -13,7 +13,7 @@ const ExpenseList = (props) => {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+    }, [id])
 
     return (
         <div>
