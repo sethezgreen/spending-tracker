@@ -28,6 +28,7 @@ const MonthSelect = (props) => {
 
     return (
         <select onChange={(e) => setMonthId(e.target.value)}>
+            <option selected>select</option>
             {
                 dropdown.map((option) => (
                     option
