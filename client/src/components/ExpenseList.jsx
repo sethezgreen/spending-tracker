@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ExpenseList = (props) => {
-    const [expenses, setExpenses] = useState([])
-    const {id} = props
+    const {expenses, setExpenses, id} = props
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/month/${id}`)
             .then((res) => {
-                console.log(res.data.expenses)
+                // console.log(res.data.expenses)
                 setExpenses(res.data.expenses)
             })
             .catch((err) => {
