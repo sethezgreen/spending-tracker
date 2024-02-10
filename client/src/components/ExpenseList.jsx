@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../App.css'
 
 const ExpenseList = (props) => {
     const {expenses, setExpenses, id} = props
@@ -17,13 +18,18 @@ const ExpenseList = (props) => {
 
     return (
         <div>
-            {
-                expenses.map((expense) => (
-                    <div key={expense._id}>
-                        <p>{expense.expenseName}</p>
-                    </div>
-                ))
-            }
+            <table className="margin-0-auto">
+                <tbody>
+                {
+                    expenses.map((expense) => (
+                            <tr key={expense._id}>
+                                <td>{expense.expenseName}</td>
+                                <td>${expense.price}</td>
+                            </tr>
+                    ))
+                }
+                </tbody>
+            </table>
         </div>
     )
 }
