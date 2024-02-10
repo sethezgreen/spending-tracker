@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const ExpenseForm = (props) => {
-    const {expenses, setExpenses, monthId} = props
+    const {setExpenses, monthId, budgetLeft, setBudgetLeft} = props
     const [expenseName, setExpenseName] = useState("")
     const [price, setPrice] = useState("")
 
@@ -12,9 +12,8 @@ const ExpenseForm = (props) => {
         const newExpense = {expenseName, price}
         axios.put(`http://localhost:8000/api/month/${monthId}/expense/add`, newExpense)
             .then((res) => {
-                console.log(res)
                 setExpenses(res.data.expenses)
-                // console.log(expenses)
+                setBudgetLeft(budgetLeft - price)
             })
             .catch(err => console.log(err))
 
@@ -25,9 +24,10 @@ const ExpenseForm = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <div>
-                <input type="text" onChange={(e) => setExpenseName(e.target.value)} value={expenseName}/>
+                <input type="text" placeholder='expense name' onChange={(e) => setExpenseName(e.target.value)} value={expenseName}/>
+                <label>$</label>
                 <input type="number" onChange={(e) => setPrice(e.target.value)} value={price}/>
-                <button>add expense</button>
+                <button>add</button>
             </div>
         </form>
     )

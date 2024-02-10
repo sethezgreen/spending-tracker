@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExpenseList from '../components/ExpenseList'
 import ExpenseForm from '../components/ExpenseForm'
 import MonthSelect from '../components/MonthSelect'
 
 const Main = () => {
-    const [monthId, setMonthId] = useState("65c6eaa6875fd16dafd8b7c7")
+    const [monthId, setMonthId] = useState()
     const [expenses, setExpenses] = useState([])
+    const [totalBudget, setTotalBudget] = useState("")
+    const [budgetLeft, setBudgetLeft] = useState("")
 
     return (
         <div>
             <h1>Spending Tracker</h1>
             <MonthSelect setMonthId={setMonthId}/>
             <Link to={`/month/create`}>Add Month</Link>
+            <p>Total Budget: ${totalBudget}</p>
+            <p>Budget Left: ${budgetLeft}</p>
             <p>Expenses</p>
-            <ExpenseForm monthId={monthId} expenses={expenses} setExpenses={setExpenses}/>
-            <ExpenseList id={monthId} expenses={expenses} setExpenses={setExpenses}/>
+            <ExpenseForm monthId={monthId} setExpenses={setExpenses} budgetLeft={budgetLeft} setBudgetLeft={setBudgetLeft}/>
+            <ExpenseList monthId={monthId} expenses={expenses} setExpenses={setExpenses} budgetLeft={budgetLeft} setBudgetLeft={setBudgetLeft} setTotalBudget={setTotalBudget}/>
         </div>
     )
 }
