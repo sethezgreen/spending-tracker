@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ExpenseList from '../components/ExpenseList'
 import ExpenseForm from '../components/ExpenseForm'
-import axios from 'axios'
 import MonthSelect from '../components/MonthSelect'
 
-const Main = (props) => {
-    const [months, setMonths] = useState([])
+const Main = () => {
     const [monthId, setMonthId] = useState("65c6eaa6875fd16dafd8b7c7")
     const [expenses, setExpenses] = useState([])
 
