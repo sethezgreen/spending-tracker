@@ -19,7 +19,7 @@ const MonthSelect = (props) => {
     const generateDropdown = (months) => {
         const options = [months.map((month) => {
             return (
-                <option value={month._id} >{month.month}</option>
+                <option value={month._id} >{month.month} {month.year}</option>
             )
         })]
         console.log(options)

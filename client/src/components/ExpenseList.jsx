@@ -9,7 +9,7 @@ const ExpenseList = (props) => {
         axios.get(`http://localhost:8000/api/month/${monthId}`)
             .then((res) => {
                 console.log(res.data)
-                setMonthTitle(res.data.month)
+                setMonthTitle(`${res.data.month} ${res.data.year}`)
                 setExpenses(res.data.expenses)
                 setTotalBudget(res.data.totalBudget)
                 setBudgetLeft(() => {
