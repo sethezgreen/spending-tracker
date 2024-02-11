@@ -18,7 +18,7 @@ const Main = () => {
                 <MonthSelect setMonthId={setMonthId}/>
                 <Link to={`/month/create`}>Add Month</Link>
             </div>
-            <h2><Link>{monthTitle}</Link></h2>
+            <h2><Link to={`/month/edit/${monthId}`}>{monthTitle}</Link></h2>
             <p>Total Budget: ${totalBudget}</p>
             <p>Budget Left: ${budgetLeft}</p>
             <p>Expenses</p>

@@ -1,32 +1,15 @@
 import React, { useState } from "react";
-import {Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import {Link } from 'react-router-dom'
 
 const MonthForm = (props) => {
-    const [month, setMonth] = useState("")
-    const [year, setYear] = useState("")
-    const [totalBudget, setTotalBudget] = useState("")
-    const navigate = useNavigate()
+    const {onSubmitProp, submitText, initialMonth, initialYear, initialTotalBudget} = props
+    const [month, setMonth] = useState(initialMonth)
+    const [year, setYear] = useState(initialYear)
+    const [totalBudget, setTotalBudget] = useState(initialTotalBudget)
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-
-        axios.post('http://localhost:8000/api/create', {
-            month,
-            year,
-            totalBudget
-        })
-            .then((res) => {
-                console.log(res)
-                navigate('/')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-
-            setMonth("")
-            setYear("")
-            setTotalBudget("")
+        onSubmitProp({month, year, totalBudget})
     }
 
     return (
@@ -58,7 +41,7 @@ const MonthForm = (props) => {
                     <label>Total Budget:</label>
                     <input type="number" onChange={(e) => setTotalBudget(e.target.value)} value={totalBudget || ""}/>
                 </div>
-                <input type="submit" value="create" />
+                <input type="submit" value={submitText} />
             </form>
         </div>
     )
