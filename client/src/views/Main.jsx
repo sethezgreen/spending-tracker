@@ -5,7 +5,7 @@ import ExpenseForm from '../components/ExpenseForm'
 import MonthSelect from '../components/MonthSelect'
 
 const Main = () => {
-    const [monthId, setMonthId] = useState("")
+    const [monthId, setMonthId] = useState()
     const [monthTitle, setMonthTitle] = useState("")
     const [expenses, setExpenses] = useState([])
     const [totalBudget, setTotalBudget] = useState("")
@@ -19,11 +19,17 @@ const Main = () => {
                 <Link to={`/month/create`}>Add Month</Link>
             </div>
             <h2><Link to={`/month/edit/${monthId}`}>{monthTitle}</Link></h2>
-            <p>Total Budget: ${totalBudget}</p>
-            <p>Budget Left: ${budgetLeft}</p>
-            <p>Expenses</p>
-            <ExpenseForm monthId={monthId} setExpenses={setExpenses} budgetLeft={budgetLeft} setBudgetLeft={setBudgetLeft}/>
-            <ExpenseList monthId={monthId} expenses={expenses} setExpenses={setExpenses} budgetLeft={budgetLeft} setBudgetLeft={setBudgetLeft} setTotalBudget={setTotalBudget} setMonthTitle={setMonthTitle}/>
+            {
+                monthId && (
+                    <div>
+                        <p>Total Budget: ${totalBudget}</p>
+                        <p>Budget Left: ${budgetLeft}</p>
+                        <p>Expenses</p>
+                        <ExpenseForm monthId={monthId} setExpenses={setExpenses} budgetLeft={budgetLeft} setBudgetLeft={setBudgetLeft}/>
+                        <ExpenseList monthId={monthId} expenses={expenses} setExpenses={setExpenses} budgetLeft={budgetLeft} setBudgetLeft={setBudgetLeft} setTotalBudget={setTotalBudget} setMonthTitle={setMonthTitle}/>
+                    </div>
+                )
+            }
         </div>
     )
 }
