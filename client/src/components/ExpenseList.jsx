@@ -3,12 +3,13 @@ import axios from "axios";
 import '../App.css'
 
 const ExpenseList = (props) => {
-    const {expenses, setExpenses, monthId, budgetLeft, setBudgetLeft, setTotalBudget} = props
+    const {expenses, setExpenses, monthId, budgetLeft, setBudgetLeft, setTotalBudget, setMonthTitle} = props
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/month/${monthId}`)
             .then((res) => {
-                // console.log(res.data.expenses)
+                console.log(res.data)
+                setMonthTitle(res.data.month)
                 setExpenses(res.data.expenses)
                 setTotalBudget(res.data.totalBudget)
                 setBudgetLeft(() => {
