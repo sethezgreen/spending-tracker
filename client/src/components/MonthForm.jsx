@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Link } from 'react-router-dom'
 
 const MonthForm = (props) => {
-    const {onSubmitProp, submitText, initialMonth, initialYear, initialTotalBudget} = props
+    const {onSubmitProp, submitText, initialMonth, initialYear, initialTotalBudget, errors} = props
     const [month, setMonth] = useState(initialMonth)
     const [year, setYear] = useState(initialYear)
     const [totalBudget, setTotalBudget] = useState(initialTotalBudget)
@@ -32,14 +32,29 @@ const MonthForm = (props) => {
                         <option value="November">November</option>
                         <option value="December">December</option>
                     </select>
+                    {
+                        errors.month?
+                        <p>{errors.month.message}</p>:
+                        null
+                    }
                 </div>
                 <div>
                     <label>Year:</label>
                     <input type="number" onChange={(e) => setYear(e.target.value)} value={year || ""}/>
+                    {
+                        errors.year?
+                        <p>{errors.year.message}</p>:
+                        null
+                    }
                 </div>
                 <div>
                     <label>Total Budget:</label>
                     <input type="number" onChange={(e) => setTotalBudget(e.target.value)} value={totalBudget || ""}/>
+                    {
+                        errors.totalBudget?
+                        <p>{errors.totalBudget.message}</p>:
+                        null
+                    }
                 </div>
                 <input type="submit" value={submitText} />
             </form>
