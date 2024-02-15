@@ -19,6 +19,7 @@ const MonthForm = (props) => {
                 <div>
                     <label>Month:</label>
                     <select onChange={(e) => setMonth(e.target.value)} value={month || ""}>
+                        <option value="">Select</option>
                         <option value="January">January</option>
                         <option value="February">February</option>
                         <option value="March">March</option>
