@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
     const {setExpenses, monthId, budgetLeft, setBudgetLeft} = props
     const [expenseName, setExpenseName] = useState("")
     const [price, setPrice] = useState("")
+    const [errors, setErrors] = useState({})
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -15,7 +16,10 @@ const ExpenseForm = (props) => {
                 setExpenses(res.data.expenses)
                 setBudgetLeft(budgetLeft - price)
             })
-            .catch(err => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setErrors(err.response.data.errors)
+            })
 
             setExpenseName("")
             setPrice("")
@@ -25,8 +29,18 @@ const ExpenseForm = (props) => {
         <form onSubmit={onSubmitHandler}>
             <div>
                 <input type="text" placeholder='expense name' onChange={(e) => setExpenseName(e.target.value)} value={expenseName}/>
+                {
+                    errors.expenseName?
+                    <p>{errors.expenseName.message}</p>:
+                    null
+                }
                 <label>$</label>
                 <input type="number" onChange={(e) => setPrice(e.target.value)} value={price}/>
+                {
+                    errors.price?
+                    <p>{errors.price.message}</p>:
+                    null
+                }
                 <button>add</button>
             </div>
         </form>

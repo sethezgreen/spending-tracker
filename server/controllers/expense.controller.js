@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const Month = require('../models/month.model')
 
 module.exports = {
@@ -12,9 +11,9 @@ module.exports = {
                     "expenseName": req.body.expenseName,
                     "price": req.body.price
                     }
-                }
+                },
             },
-            {new:true}
+            {new:true, runValidators:true}
         )
             .then((updatedMonth) => {
                 res.json(updatedMonth)
